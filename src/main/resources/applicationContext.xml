@@ -33,7 +33,11 @@
         <!--控制数据源-->
         <property name="dataSource" ref="pooledDataSource"></property>
     </bean>
-
+    <!--配置一个可以执行批量的sqlSession-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
     <!--开启给予注解的事务 ，使用xml配置形式的事务-->
     <aop:config>
         <!--切入点表达式-->
